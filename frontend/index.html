@@ -4,11 +4,20 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>To-do List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <div class="app">
-  <h1>To-do List</h1>
+  <header class="app-header">
+    <span class="app-icon">✅</span>
+    <div>
+      <h1>To-do List</h1>
+      <p class="app-subtitle">오늘 할 일을 정리해보세요</p>
+    </div>
+  </header>
 
   <form id="todo-form">
     <input type="text" id="todo-input" placeholder="할 일을 입력하세요" autocomplete="off" required />

@@ -113,14 +113,14 @@ function renderTodos(todos) {
   if (todos.length === 0) {
     const empty = document.createElement("li");
     empty.className = "empty";
-    empty.textContent = "할 일이 없습니다.";
+    empty.innerHTML = '<span class="empty-icon">🗒️</span><span>할 일이 없습니다.</span>';
     list.appendChild(empty);
     return;
   }
 
   for (const todo of todos) {
     const item = document.createElement("li");
-    item.className = "todo-item" + (todo.done ? " done" : "");
+    item.className = `todo-item priority-border-${todo.priority}` + (todo.done ? " done" : "");
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
