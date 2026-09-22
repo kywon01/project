@@ -15,9 +15,11 @@ frontend/   정적 HTML/CSS/JS 프론트엔드
 
 ```bash
 cd backend
-pip install -r requirements.txt
-python app.py
+pip3 install -r requirements.txt
+python3 app.py
 ```
+
+(Windows나 `python` 명령어가 파이썬 3를 가리키는 환경이라면 `pip`/`python`을 그대로 사용해도 됩니다.)
 
 `http://localhost:5000` 에서 API가 실행됩니다.
 
