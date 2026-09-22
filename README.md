@@ -36,11 +36,22 @@ python3 -m http.server 5500
 
 그 다음 브라우저에서 `http://localhost:5500` 으로 접속합니다. (별도 빌드 과정 없음)
 
+## 기능
+
+- 할 일 추가/완료 토글/삭제
+- 마감일 지정 (지난 마감일은 빨간색으로 표시)
+- 우선순위 (낮음/보통/높음)
+- 카테고리 분류 (자유 입력, 기존 카테고리 자동완성)
+- 제목 검색 및 카테고리/우선순위 필터
+
 ## API
 
 | Method | Endpoint          | 설명           |
 |--------|-------------------|----------------|
-| GET    | /api/todos        | 목록 조회      |
-| POST   | /api/todos        | 할 일 추가     |
+| GET    | /api/todos        | 목록 조회 (쿼리 파라미터: `search`, `category`, `priority`) |
+| GET    | /api/categories   | 사용 중인 카테고리 목록 |
+| POST   | /api/todos        | 할 일 추가 (`title`, `due_date`, `priority`, `category`) |
 | PUT    | /api/todos/{id}   | 수정 (완료 토글 등) |
 | DELETE | /api/todos/{id}   | 삭제           |
+
+> DB 스키마는 실행 시 자동으로 마이그레이션되므로 기존 `backend/todos.db`를 지우지 않아도 됩니다.

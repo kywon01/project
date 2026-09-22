@@ -12,8 +12,31 @@
 
   <form id="todo-form">
     <input type="text" id="todo-input" placeholder="할 일을 입력하세요" autocomplete="off" required />
+    <div class="form-row">
+      <input type="date" id="due-date-input" title="마감일" />
+      <select id="priority-input" title="우선순위">
+        <option value="low">우선순위: 낮음</option>
+        <option value="medium" selected>우선순위: 보통</option>
+        <option value="high">우선순위: 높음</option>
+      </select>
+      <input type="text" id="category-input" placeholder="카테고리 (선택)" autocomplete="off" list="category-options" />
+      <datalist id="category-options"></datalist>
+    </div>
     <button type="submit">추가</button>
   </form>
+
+  <div class="filter-bar">
+    <input type="text" id="search-input" placeholder="검색..." autocomplete="off" />
+    <select id="category-filter">
+      <option value="">전체 카테고리</option>
+    </select>
+    <select id="priority-filter">
+      <option value="">전체 우선순위</option>
+      <option value="high">높음</option>
+      <option value="medium">보통</option>
+      <option value="low">낮음</option>
+    </select>
+  </div>
 
   <p id="error-message" class="error hidden"></p>
 
