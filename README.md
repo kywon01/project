@@ -25,7 +25,14 @@ python3 app.py
 
 ### 프론트엔드
 
-`frontend/index.html` 파일을 브라우저로 열면 됩니다. (별도 빌드 과정 없음)
+`frontend/index.html`을 `file://`로 직접 열면 최신 브라우저(Chrome 등)의 보안 정책(Private Network Access)에 막혀 API 호출이 CORS 에러로 실패할 수 있습니다. 대신 간단한 로컬 웹서버로 열어주세요.
+
+```bash
+cd frontend
+python3 -m http.server 5500
+```
+
+그 다음 브라우저에서 `http://localhost:5500` 으로 접속합니다. (별도 빌드 과정 없음)
 
 ## API
 
