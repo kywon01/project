@@ -21,7 +21,9 @@ python3 app.py
 
 (Windows나 `python` 명령어가 파이썬 3를 가리키는 환경이라면 `pip`/`python`을 그대로 사용해도 됩니다.)
 
-`http://localhost:5000` 에서 API가 실행됩니다.
+`http://localhost:5001` 에서 API가 실행됩니다.
+
+> macOS는 포트 5000을 AirPlay 수신 기능이 기본으로 점유하고 있어 Flask와 충돌할 수 있습니다. 이 프로젝트는 이를 피하기 위해 5001 포트를 사용합니다.
 
 ### 프론트엔드
 
