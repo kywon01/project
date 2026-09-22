@@ -94,6 +94,20 @@ h1 {
   text-decoration: underline;
 }
 
+.error {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+}
+
+.hidden {
+  display: none;
+}
+
 .empty {
   color: #9ca3af;
   text-align: center;
