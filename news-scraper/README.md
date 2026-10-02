@@ -1,6 +1,6 @@
 # news-scraper
 
-매일 새벽 6시에 **전날 주요기사 Top 10**을 RSS로 수집해 Google Sheets에 추가한다. Claude API는 쓰지 않는다(비용 없음).
+매일 자정(00:00)에 **전날 주요기사 Top 10**을 RSS로 수집해 Google Sheets에 추가한다. Claude API는 쓰지 않는다(비용 없음).
 
 ## 동작
 - `config.json`의 RSS 피드에서 전날(KST) 기사만 골라 매체별로 번갈아 10건을 뽑는다. 제목/링크 중복은 제거한다.
@@ -25,15 +25,15 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python scraper.py               # 실제 업로드 확인
 ```
 
-## 3. 새벽 6시 자동 실행 (launchd)
+## 3. 자정 자동 실행 (launchd)
 ```bash
 sed -i '' "s/YOUR_NAME/$(whoami)/g" com.user.news-scraper.plist
 cp com.user.news-scraper.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.user.news-scraper.plist
 launchctl start com.user.news-scraper     # 즉시 1회 테스트
 ```
-- 맥 시간대가 한국(KST)이어야 6시에 실행된다.
-- 잠자기 상태면 깨어난 뒤 실행된다. 새벽 5:55에 깨우려면: `sudo pmset repeat wakeorpoweron MTWRFSU 05:55:00`
+- 맥 시간대가 한국(KST)이어야 0시에 실행된다.
+- 잠자기 상태면 깨어난 뒤 실행된다. 23:55에 깨우려면: `sudo pmset repeat wakeorpoweron MTWRFSU 23:55:00`
 - 로그: `scraper.log`
 - 해제: `launchctl unload ~/Library/LaunchAgents/com.user.news-scraper.plist`
 
