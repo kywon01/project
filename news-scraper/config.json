@@ -1,0 +1,13 @@
+{
+  "spreadsheet_id": "",
+  "worksheet": "Top10",
+  "service_account_file": "service_account.json",
+  "timezone": "Asia/Seoul",
+  "top_n": 10,
+  "feeds": [
+    {"name": "Google뉴스 주요뉴스", "url": "https://news.google.com/rss?hl=ko&gl=KR&ceid=KR:ko"},
+    {"name": "연합뉴스 최신", "url": "https://www.yna.co.kr/rss/news.xml"},
+    {"name": "한겨레", "url": "https://www.hani.co.kr/rss/"},
+    {"name": "경향신문", "url": "https://www.khan.co.kr/rss/rssdata/total_news.xml"}
+  ]
+}
