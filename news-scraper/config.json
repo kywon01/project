@@ -5,9 +5,25 @@
   "timezone": "Asia/Seoul",
   "top_n": 10,
   "feeds": [
-    {"name": "Google뉴스 주요뉴스", "url": "https://news.google.com/rss?hl=ko&gl=KR&ceid=KR:ko"},
-    {"name": "연합뉴스 최신", "url": "https://www.yna.co.kr/rss/news.xml"},
-    {"name": "한겨레", "url": "https://www.hani.co.kr/rss/"},
-    {"name": "경향신문", "url": "https://www.khan.co.kr/rss/rssdata/total_news.xml"}
+    {
+      "name": "Google뉴스 IT",
+      "url": "https://news.google.com/rss/search?q=IT+OR+AI+OR+%EB%B0%98%EB%8F%84%EC%B2%B4+OR+%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C+OR+%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4&hl=ko&gl=KR&ceid=KR:ko"
+    },
+    {
+      "name": "전자신문",
+      "url": "https://rss.etnews.com/Section901.xml"
+    },
+    {
+      "name": "연합뉴스 IT",
+      "url": "https://www.yna.co.kr/rss/it.xml"
+    },
+    {
+      "name": "ZDNet Korea",
+      "url": "https://feeds.feedburner.com/zdkorea"
+    },
+    {
+      "name": "블로터",
+      "url": "https://www.bloter.net/feed"
+    }
   ]
 }
