@@ -18,7 +18,7 @@
 
 ## 2. 맥미니 설치
 ```bash
-git clone https://github.com/kywon01/project.git ~/project
+git clone -b claude/repository-selection-check-4zcifg https://github.com/kywon01/project.git ~/project
 cd ~/project/news-scraper
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python scraper.py --dry-run     # 업로드 없이 수집 확인
