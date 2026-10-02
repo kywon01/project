@@ -41,3 +41,11 @@ launchctl start com.user.news-scraper     # 즉시 1회 테스트
 - `python scraper.py --date 2026-10-01` 특정 날짜 수집
 - 피드 추가/삭제, 개수 변경은 `config.json`
 - 테스트: `pip install pytest && pytest tests`
+
+## 간편 설치/점검 (맥미니)
+```bash
+git pull
+./install.sh           # venv, 패키지, launchd 예약(기본 00:00)을 한 번에 설정
+./install.sh 17 0      # 시험용: 17:00으로 등록
+./status.sh            # 현재 상태 한눈에 확인
+```
