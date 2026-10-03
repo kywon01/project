@@ -65,7 +65,9 @@ def fetch(url: str) -> str:
     return resp.text
 
 
-def find_price(p: Product, get: Callable[[str], str], save_dir: Optional[Path] = None) -> Optional[Candidate]:
+def find_price(
+    p: Product, get: Callable[[str], str], save_dir: Optional[Path] = None, verbose: bool = False
+) -> Optional[Candidate]:
     """url이 있으면 상품 페이지에서, 없으면 검색 결과에서 조건에 맞는 최저가를 찾는다."""
     if p.url:
         html = get(p.url)
@@ -79,6 +81,10 @@ def find_price(p: Product, get: Callable[[str], str], save_dir: Optional[Path] =
     _maybe_save(save_dir, p.name, "search", html)
     results = parse_search_results(html)
     ok = [c for c in results if matches(c.name, p.include, p.exclude)]
+    print(f"   검색 결과 {len(results)}건 중 조건에 맞는 것 {len(ok)}건")
+    if verbose:
+        for c in sorted(results, key=lambda c: c.price):
+            print(f"     {'✓' if c in ok else '·'} {c.price:>9,}원  {c.name}")
     if not ok:
         print(f"   조건에 맞는 검색 결과가 없어요. 상위 후보 {min(5, len(results))}개:")
         for c in results[:5]:
@@ -110,14 +116,17 @@ def alerts(p: Product, price: int, prev: Optional[int], lowest: Optional[int]) -
     return msgs
 
 
-def run(products: list[Product], conn, get=fetch, save_dir: Optional[Path] = None, delay: float = REQUEST_DELAY_SEC) -> int:
+def run(
+    products: list[Product], conn, get=fetch, save_dir: Optional[Path] = None,
+    delay: float = REQUEST_DELAY_SEC, verbose: bool = False,
+) -> int:
     failures = 0
     for i, p in enumerate(products):
         if i:
             time.sleep(delay)
         print(f"\n[{p.name}]  공식가 {p.official_price:,}원 / 목표가 {p.target_price:,}원")
         try:
-            cand = find_price(p, get, save_dir)
+            cand = find_price(p, get, save_dir, verbose)
         except requests.RequestException as e:
             print(f"   접속 실패: {e}")
             failures += 1
@@ -150,6 +159,7 @@ def main(argv=None) -> int:
     ap.add_argument("--products", type=Path, default=HERE / "products.csv")
     ap.add_argument("--db", default=str(HERE / "prices.db"))
     ap.add_argument("--save-html", type=Path, help="받은 HTML을 이 폴더에 저장")
+    ap.add_argument("--verbose", action="store_true", help="검색 결과 전체와 매칭 여부를 보여줌 (✓=선택 후보)")
     args = ap.parse_args(argv)
 
     products = load_products(args.products)
@@ -157,7 +167,7 @@ def main(argv=None) -> int:
     if args.command == "history":
         show_history(products, conn)
         return 0
-    return 1 if run(products, conn, save_dir=args.save_html) else 0
+    return 1 if run(products, conn, save_dir=args.save_html, verbose=args.verbose) else 0
 
 
 if __name__ == "__main__":

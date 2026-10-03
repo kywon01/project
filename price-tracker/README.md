@@ -10,6 +10,7 @@ cd price-tracker
 pip3 install -r requirements.txt
 python3 tracker.py run        # 가격 수집 + 알림
 python3 tracker.py history    # 저장된 이력 보기
+python3 tracker.py run --verbose   # 검색 결과 전체와 선택된 후보(✓)를 보여줌 (가격이 다나와 화면과 다를 때)
 python3 -m unittest discover -s tests   # 테스트
 ```
 

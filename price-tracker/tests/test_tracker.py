@@ -70,6 +70,16 @@ class TrackerTests(unittest.TestCase):
         cand = tracker.find_price(self.mouse, lambda url: SEARCH_HTML)
         self.assertEqual(cand.price, 89900)  # 블랙(105,000)과 광고는 제외, 화이트 중 최저가
 
+    def test_verbose_lists_all_results_with_match_marks(self):
+        import contextlib, io
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            tracker.find_price(self.mouse, lambda url: SEARCH_HTML, verbose=True)
+        out = buf.getvalue()
+        self.assertIn("검색 결과 3건 중 조건에 맞는 것 2건", out)
+        self.assertIn("✓    89,900원", out)
+        self.assertIn("·   105,000원", out)
+
     def test_url_mode_uses_product_page(self):
         p = tracker.Product("키보드", "", "https://example/p", 199000, 175000, [], [])
         self.assertEqual(tracker.find_price(p, lambda url: PRODUCT_HTML).price, 187000)
