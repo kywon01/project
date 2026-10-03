@@ -13,6 +13,18 @@ python3 tracker.py history    # 저장된 이력 보기
 python3 -m unittest discover -s tests   # 테스트
 ```
 
+## 웹 대시보드
+
+```bash
+python3 dashboard.py --open    # dashboard.html을 만들고 브라우저로 열기
+```
+
+- 상품별 카드에 현재 최저가, 공식가 대비, 목표가까지 남은 금액, 가격 추이 차트가 나와요.
+- 차트에 마우스를 올리면 그 시점의 가격과 매칭된 상품명이 보여요 (키보드 방향키도 돼요).
+- 위쪽 `7일 / 30일 / 전체`로 기간을 바꿀 수 있고, 카드 아래 "표로 보기"에서 원본 값을 확인할 수 있어요.
+- 서버나 인터넷 연결이 필요 없는 파일 하나짜리 페이지예요. 새 가격을 수집한 뒤 다시 실행하면 갱신돼요.
+- 수집과 함께 자동 갱신하려면 cron 줄 끝에 이어 붙이세요: `... tracker.py run && python3 dashboard.py`
+
 ## products.csv
 
 | 컬럼 | 설명 |

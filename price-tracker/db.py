@@ -41,6 +41,13 @@ def save_price(conn, product: str, price: int, matched: str, source_url: str) ->
     conn.commit()
 
 
+def all_rows(conn, product: str):
+    """오래된 순 전체 이력 (fetched_at, price, matched)."""
+    return conn.execute(
+        "SELECT fetched_at, price, matched FROM prices WHERE product = ? ORDER BY id", (product,)
+    ).fetchall()
+
+
 def history(conn, product: str, limit: int = 30):
     return conn.execute(
         "SELECT fetched_at, price, matched FROM prices WHERE product = ? ORDER BY id DESC LIMIT ?",
