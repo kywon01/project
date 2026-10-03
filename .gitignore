@@ -3,3 +3,5 @@ __pycache__/
 backend/todos.db
 .venv/
 venv/
+news-scraper/service_account.json
+news-scraper/scraper.log

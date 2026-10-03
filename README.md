@@ -1,3 +1,13 @@
+# project
+
+개인 프로젝트 모음입니다. 프로젝트별로 폴더가 나뉘어 있습니다.
+
+```
+backend/, frontend/   To-do 리스트(메모) 웹앱 - 아래 설명
+news-scraper/         매일 IT 뉴스 RSS 상위 10건을 Google Sheets에 저장 (news-scraper/README.md)
+price-tracker/        다나와 최저가 추적기 - Apple Magic Mouse / Magic Keyboard (price-tracker/README.md)
+```
+
 # To-do List 웹앱
 
 Flask REST API 백엔드와 바닐라 JS 프론트엔드로 구성된 간단한 To-do 리스트 웹앱입니다.

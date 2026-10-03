@@ -1,0 +1,29 @@
+{
+  "spreadsheet_id": "1D1RBD4lwJm-fvUDPsQ8hH04GRx1ZrmeT1jN57Obd2hk",
+  "worksheet": "Top10",
+  "service_account_file": "service_account.json",
+  "timezone": "Asia/Seoul",
+  "top_n": 10,
+  "feeds": [
+    {
+      "name": "ZDNet Korea",
+      "url": "https://feeds.feedburner.com/zdkorea"
+    },
+    {
+      "name": "IT동아",
+      "url": "https://it.donga.com/feeds/rss/"
+    },
+    {
+      "name": "아이티데일리",
+      "url": "https://www.itdaily.kr/rss/allArticle.xml"
+    },
+    {
+      "name": "디지털투데이",
+      "url": "https://www.digitaltoday.co.kr/rss/allArticle.xml"
+    },
+    {
+      "name": "Google뉴스 IT",
+      "url": "https://news.google.com/rss/search?q=IT+OR+AI+OR+%EB%B0%98%EB%8F%84%EC%B2%B4+OR+%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C+OR+%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4+when:2d&hl=ko&gl=KR&ceid=KR:ko"
+    }
+  ]
+}
