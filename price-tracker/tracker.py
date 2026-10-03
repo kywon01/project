@@ -27,6 +27,7 @@ HEADERS = {
     "Accept-Language": "ko-KR,ko;q=0.9",
 }
 REQUEST_DELAY_SEC = 3  # 서버에 부담 주지 않도록 상품 사이에 쉰다
+MIN_PRICE_RATIO = 0.5  # 공식가의 이 비율 미만은 액세서리/오등록으로 보고 제외한다
 
 
 @dataclass
@@ -80,11 +81,16 @@ def find_price(
     html = get(SEARCH_URL.format(q=quote(p.query)))
     _maybe_save(save_dir, p.name, "search", html)
     results = parse_search_results(html)
-    ok = [c for c in results if matches(c.name, p.include, p.exclude)]
+    by_name = [c for c in results if matches(c.name, p.include, p.exclude)]
+    floor = p.official_price * MIN_PRICE_RATIO
+    ok = [c for c in by_name if c.price >= floor]
     print(f"   검색 결과 {len(results)}건 중 조건에 맞는 것 {len(ok)}건")
+    if len(by_name) > len(ok):
+        print(f"   (공식가의 {MIN_PRICE_RATIO:.0%} 미만이라 제외한 것 {len(by_name) - len(ok)}건 - 액세서리일 수 있어요)")
     if verbose:
         for c in sorted(results, key=lambda c: c.price):
-            print(f"     {'✓' if c in ok else '·'} {c.price:>9,}원  {c.name}")
+            mark = "✓" if c in ok else "!" if c in by_name else "·"
+            print(f"     {mark} {c.price:>9,}원  {c.name}")
     if not ok:
         print(f"   조건에 맞는 검색 결과가 없어요. 상위 후보 {min(5, len(results))}개:")
         for c in results[:5]:
@@ -159,7 +165,7 @@ def main(argv=None) -> int:
     ap.add_argument("--products", type=Path, default=HERE / "products.csv")
     ap.add_argument("--db", default=str(HERE / "prices.db"))
     ap.add_argument("--save-html", type=Path, help="받은 HTML을 이 폴더에 저장")
-    ap.add_argument("--verbose", action="store_true", help="검색 결과 전체와 매칭 여부를 보여줌 (✓=선택 후보)")
+    ap.add_argument("--verbose", action="store_true", help="검색 결과 전체와 매칭 여부를 보여줌 (✓=후보, !=너무 싸서 제외, ·=이름 불일치)")
     args = ap.parse_args(argv)
 
     products = load_products(args.products)

@@ -181,7 +181,7 @@ function drawChart(c) {
   const refs = [p.official, p.target].filter(Boolean);
   const lo = Math.min(...vals, ...refs), hi = Math.max(...vals, ...refs);
   const padv = (hi - lo) * 0.12 || hi * 0.04;
-  const ticks = niceTicks(lo - padv, hi + padv);
+  const ticks = niceTicks(Math.max(0, lo - padv), hi + padv);   // 가격은 음수가 될 수 없다
   const y0 = ticks[0], y1 = ticks[ticks.length - 1];
 
   let t0 = rows[0].t.getTime(), t1 = rows[rows.length - 1].t.getTime();

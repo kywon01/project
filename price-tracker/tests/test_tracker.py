@@ -80,6 +80,17 @@ class TrackerTests(unittest.TestCase):
         self.assertIn("✓    89,900원", out)
         self.assertIn("·   105,000원", out)
 
+    def test_accessory_far_below_official_price_is_excluded(self):
+        import contextlib, io
+        html = SEARCH_HTML.replace("<ul>", '''<ul><li class="prod_item"><p class="prod_name"><a href="/x">마우스 USB-C 키스킨 커버</a></p>
+            <p class="price_sect"><a><strong>7,000</strong></a></p></li>''')
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            cand = tracker.find_price(self.mouse, lambda url: html, verbose=True)
+        self.assertEqual(cand.price, 89900)          # 7,000원짜리 액세서리는 선택되지 않는다
+        self.assertIn("!     7,000원", buf.getvalue())
+        self.assertIn("제외한 것 1건", buf.getvalue())
+
     def test_url_mode_uses_product_page(self):
         p = tracker.Product("키보드", "", "https://example/p", 199000, 175000, [], [])
         self.assertEqual(tracker.find_price(p, lambda url: PRODUCT_HTML).price, 187000)
