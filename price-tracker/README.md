@@ -34,6 +34,8 @@ python3 dashboard.py --open    # dashboard.html을 만들고 브라우저로 열
 | `url` | 다나와 상품 페이지 URL. **채우면 검색 대신 이 페이지를 직접 읽음** (가장 정확) |
 | `official_price` / `target_price` | 애플 공식가 / 알림받을 목표가 |
 | `must_include` | 상품명에 전부 포함되어야 하는 단어 (`\|`로 구분) |
+
+> 다나와는 같은 상품이 `APPLE Magic Mouse MXK53KH/A`, `애플코리아 … 매직 마우스 …`처럼 제각각 표기돼요. 한글 단어로 거르면 진짜 최저가 항목을 놓칠 수 있어서, **`must_include`에는 모델 번호(예: `MXK53KH`)를 넣는 걸 권장**해요.
 | `must_exclude` | 하나라도 있으면 제외할 단어 (`\|`로 구분) |
 
 ## 처음 실행할 때 확인할 것

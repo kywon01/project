@@ -95,7 +95,9 @@ class TrackerTests(unittest.TestCase):
         self.assertEqual(len(products), 2)
         self.assertEqual(products[0].official_price, 99000)
         self.assertEqual(products[1].official_price, 199000)
-        self.assertIn("USB-C", products[0].include)
+        # 상품명 표기(영문/한글)가 제각각이라 모델 번호로 고정한다
+        self.assertEqual(products[0].include, ["MXK53KH"])
+        self.assertEqual(products[1].include, ["MXCK3KH"])
 
 
 if __name__ == "__main__":
