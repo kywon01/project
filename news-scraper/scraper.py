@@ -185,6 +185,11 @@ def upload(ws, rows, target):
     return True
 
 
+def sort_sheet(ws):
+    """기사일(B) 내림차순, 같은 날은 순위(C) 오름차순으로 정렬한다. 헤더는 그대로 둔다."""
+    ws.sort((2, "des"), (3, "asc"), range=f"A2:{chr(ord('A') + len(HEADER) - 1)}{ws.row_count}")
+
+
 def sheet_dates(ws):
     return {date.fromisoformat(v) for v in ws.col_values(2)[1:]
             if re.fullmatch(r"\d{4}-\d{2}-\d{2}", v)}
@@ -248,6 +253,12 @@ def run(args, cfg, tz, today, target):
         status, msg = "OK", f"{len(rows)}건 업로드"
     else:
         status, msg = "OK", "이미 있어 건너뜀"
+
+    if cfg.get("sort_desc"):
+        try:
+            sort_sheet(ws)
+        except Exception:  # 정렬 실패가 업로드 성공을 되돌리면 안 된다
+            log.warning("시트 정렬 실패", exc_info=True)
 
     gaps = missing_days(sheet_dates(ws), target)
     if gaps:
