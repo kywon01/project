@@ -1,5 +1,5 @@
-const API_BASE = "http://127.0.0.1:5001/api/todos";
-const CATEGORIES_URL = "http://127.0.0.1:5001/api/categories";
+const API_BASE = "/api/todos";
+const CATEGORIES_URL = "/api/categories";
 
 const form = document.getElementById("todo-form");
 const input = document.getElementById("todo-input");
