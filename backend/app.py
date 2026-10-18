@@ -1,14 +1,20 @@
 import sqlite3
 from pathlib import Path
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 
 DB_PATH = Path(__file__).parent / "todos.db"
+FRONTEND_DIR = Path(__file__).parent.parent / "frontend"
 PRIORITIES = ("low", "medium", "high")
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder=str(FRONTEND_DIR), static_url_path="")
 CORS(app)
+
+
+@app.route("/")
+def index():
+    return send_from_directory(FRONTEND_DIR, "index.html")
 
 
 def get_db():
