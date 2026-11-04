@@ -14,7 +14,7 @@ frontend/   정적 HTML/CSS/JS 프론트엔드
 Flask가 API와 프론트엔드 정적 파일을 함께 서빙하므로 **터미널 하나, 명령어 하나**면 됩니다.
 
 ```bash
-cd backend
+cd memo-app/backend
 pip3 install -r requirements.txt
 python3 app.py
 ```
@@ -43,4 +43,4 @@ python3 app.py
 | PUT    | /api/todos/{id}   | 수정 (완료 토글 등) |
 | DELETE | /api/todos/{id}   | 삭제           |
 
-> DB 스키마는 실행 시 자동으로 마이그레이션되므로 기존 `backend/todos.db`를 지우지 않아도 됩니다.
+> DB 스키마는 실행 시 자동으로 마이그레이션되므로 기존 `memo-app/backend/todos.db`를 지우지 않아도 됩니다.
