@@ -1,6 +1,6 @@
 # 다나와 가격 추적기
 
-애플 Magic Mouse(USB-C)와 Touch ID Magic Keyboard(USB-C, 한국어)의 다나와 최저가를 수집해 SQLite에 이력으로 쌓고,
+`products.csv`에 적은 상품(현재: 애플 Magic Mouse USB-C 화이트)의 다나와 최저가를 수집해 SQLite에 이력으로 쌓고,
 목표가 도달·공식가 대비 할인·가격 하락 시 터미널에 알려 줍니다.
 
 ## 실행
@@ -27,6 +27,8 @@ python3 dashboard.py --open    # dashboard.html을 만들고 브라우저로 열
 - 수집과 함께 자동 갱신하려면 cron 줄 끝에 이어 붙이세요: `... tracker.py run && python3 dashboard.py`
 
 ## products.csv
+
+> 상품을 추가하려면 한 줄을 더 적으면 되고, 빼려면 그 줄을 지우면 돼요. 지워도 이미 쌓인 가격 기록(`prices.db`)은 남아요.
 
 | 컬럼 | 설명 |
 |---|---|
